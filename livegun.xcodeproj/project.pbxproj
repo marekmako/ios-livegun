@@ -7,21 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2065BA7D1E371EA000433880 /* Weapons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2065BA7C1E371EA000433880 /* Weapons.swift */; };
 		20682FF11E2A039100DEBA13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20682FF01E2A039100DEBA13 /* AppDelegate.swift */; };
-		20682FF31E2A039100DEBA13 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20682FF21E2A039100DEBA13 /* ViewController.swift */; };
+		20682FF31E2A039100DEBA13 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20682FF21E2A039100DEBA13 /* Test.swift */; };
 		20682FF61E2A039100DEBA13 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20682FF41E2A039100DEBA13 /* Main.storyboard */; };
-		20682FF81E2A039100DEBA13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20682FF71E2A039100DEBA13 /* Assets.xcassets */; };
 		20682FFB1E2A039100DEBA13 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20682FF91E2A039100DEBA13 /* LaunchScreen.storyboard */; };
+		20F68F8B1E350D480022D151 /* HitEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F68F8A1E350D480022D151 /* HitEffects.swift */; };
+		20FF65BC1E2A8A2800BFBF10 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20FF65BB1E2A8A2800BFBF10 /* Media.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2065BA7C1E371EA000433880 /* Weapons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weapons.swift; sourceTree = "<group>"; };
 		20682FED1E2A039100DEBA13 /* livegun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = livegun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20682FF01E2A039100DEBA13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		20682FF21E2A039100DEBA13 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		20682FF21E2A039100DEBA13 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		20682FF51E2A039100DEBA13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		20682FF71E2A039100DEBA13 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		20682FFA1E2A039100DEBA13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		20682FFC1E2A039100DEBA13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		20F68F8A1E350D480022D151 /* HitEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitEffects.swift; sourceTree = "<group>"; };
+		20FF65BB1E2A8A2800BFBF10 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,12 +58,14 @@
 		20682FEF1E2A039100DEBA13 /* livegun */ = {
 			isa = PBXGroup;
 			children = (
-				20682FF01E2A039100DEBA13 /* AppDelegate.swift */,
-				20682FF21E2A039100DEBA13 /* ViewController.swift */,
+				2065BA7C1E371EA000433880 /* Weapons.swift */,
+				20F68F8A1E350D480022D151 /* HitEffects.swift */,
 				20682FF41E2A039100DEBA13 /* Main.storyboard */,
-				20682FF71E2A039100DEBA13 /* Assets.xcassets */,
+				20682FF21E2A039100DEBA13 /* Test.swift */,
+				20682FF01E2A039100DEBA13 /* AppDelegate.swift */,
 				20682FF91E2A039100DEBA13 /* LaunchScreen.storyboard */,
 				20682FFC1E2A039100DEBA13 /* Info.plist */,
+				20FF65BB1E2A8A2800BFBF10 /* Media.xcassets */,
 			);
 			path = livegun;
 			sourceTree = "<group>";
@@ -125,7 +131,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				20682FFB1E2A039100DEBA13 /* LaunchScreen.storyboard in Resources */,
-				20682FF81E2A039100DEBA13 /* Assets.xcassets in Resources */,
+				20FF65BC1E2A8A2800BFBF10 /* Media.xcassets in Resources */,
 				20682FF61E2A039100DEBA13 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,7 +143,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20682FF31E2A039100DEBA13 /* ViewController.swift in Sources */,
+				20F68F8B1E350D480022D151 /* HitEffects.swift in Sources */,
+				2065BA7D1E371EA000433880 /* Weapons.swift in Sources */,
+				20682FF31E2A039100DEBA13 /* Test.swift in Sources */,
 				20682FF11E2A039100DEBA13 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -300,6 +308,7 @@
 				206830011E2A039100DEBA13 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
