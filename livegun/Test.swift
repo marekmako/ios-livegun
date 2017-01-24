@@ -11,6 +11,8 @@ import AVFoundation
 
 class TestViewController: UIViewController {
     
+    var audioPlayer: AVAudioPlayer?
+    
     var videocnt: Int = 0
     
     fileprivate let avSession = AVCaptureSession()
@@ -29,11 +31,39 @@ class TestViewController: UIViewController {
     let bloodLayer = CALayer()
     let gunLayer = CALayer()
     
+    let stieracLayer = CALayer()
+    
     var hitEffects: HitEffects!
-
     
     @IBOutlet weak var videoView: UIView!
     @IBOutlet weak var processedImageView: UIImageView!
+    
+    @IBAction func onStieracClick() {
+        let stieracAnimation = CAKeyframeAnimation(keyPath: "contents")
+        stieracAnimation.calculationMode = kCAAnimationDiscrete
+        stieracAnimation.duration = 0.5
+        stieracAnimation.keyTimes = [0, 0.1, 0.2, 0.3, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
+        stieracAnimation.isAdditive = true
+        stieracAnimation.values = [
+            #imageLiteral(resourceName: "stierac1").cgImage!,
+            #imageLiteral(resourceName: "stierac2").cgImage!,
+            #imageLiteral(resourceName: "stierac3").cgImage!,
+            #imageLiteral(resourceName: "stierac4").cgImage!,
+            #imageLiteral(resourceName: "stierac5").cgImage!,
+            #imageLiteral(resourceName: "stierac7").cgImage!,
+            #imageLiteral(resourceName: "stierac8").cgImage!,
+            #imageLiteral(resourceName: "stierac9").cgImage!,
+            #imageLiteral(resourceName: "stierac10").cgImage!,
+            #imageLiteral(resourceName: "stierac11").cgImage!,
+        ]
+        stieracLayer.add(stieracAnimation, forKey: nil)
+        
+        let audioName = "stierac-sound" + "\(Int(arc4random_uniform(2)))"
+        audioPlayer = try? AVAudioPlayer(data: NSDataAsset(name: audioName)!.data, fileTypeHint: AVFileTypeCoreAudioFormat)
+        audioPlayer?.play()
+        
+        hitEffects.hideRandKrvaveFrkance()
+    }
 
     var weapon: BaseWeapon?
 
@@ -153,6 +183,7 @@ fileprivate extension TestViewController {
     }
     
     func startCameraLivePreview() {
+        // MARK: VIDEO LAYER
         videoLayer = AVCaptureVideoPreviewLayer(session: avSession)!
         videoLayerConnection = videoLayer.connection
         
@@ -160,7 +191,7 @@ fileprivate extension TestViewController {
         videoLayerConnection?.videoOrientation = currentOrientation()
         
         videoLayer.frame = videoView.bounds
-        
+        videoLayer.zPosition = -1
         videoView.layer.addSublayer(videoLayer)
         avSession.startRunning()
         
@@ -225,6 +256,10 @@ fileprivate extension TestViewController {
             mouthLayer.borderColor = UIColor.yellow.cgColor
         #endif
         videoView.layer.addSublayer(mouthLayer)
+        
+        // MARK: STIERAC LAYER
+        stieracLayer.frame = videoLayer.bounds
+        videoView.layer.addSublayer(stieracLayer)
     }
 }
 

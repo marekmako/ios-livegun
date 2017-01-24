@@ -23,7 +23,22 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mrl-7A-bWP">
                                 <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fXa-7G-Lru">
+                                        <rect key="frame" x="8" y="8" width="49" height="30"/>
+                                        <state key="normal" title="Stierac">
+                                            <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onStieracClick" destination="BYZ-38-t0r" eventType="touchUpInside" id="y0L-Yn-KEh"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="fXa-7G-Lru" firstAttribute="top" secondItem="Mrl-7A-bWP" secondAttribute="top" constant="8" id="CIp-56-Z4A"/>
+                                    <constraint firstItem="fXa-7G-Lru" firstAttribute="leading" secondItem="Mrl-7A-bWP" secondAttribute="leading" constant="8" id="HTW-nq-Ila"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

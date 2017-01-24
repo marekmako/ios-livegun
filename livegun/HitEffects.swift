@@ -99,6 +99,14 @@ class HitEffects {
             effect.hideLayerFrame()
         }
     }
+    
+    func hideRandKrvaveFrkance() {
+        let cnt = Int(arc4random_uniform(UInt32(krvaveFrkanceCollection.count)))
+        for i in 0..<cnt {
+            krvaveFrkanceCollection[i].layer.removeFromSuperlayer()
+        }
+        krvaveFrkanceCollection.removeFirst(cnt)
+    }
 }
 
 fileprivate class BaseHitEffect {
