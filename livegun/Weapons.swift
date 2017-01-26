@@ -10,10 +10,19 @@ import UIKit
 import AVFoundation
 
 
+// MARK: - XPR50
+class XPR50Type: BaseWeaponType {
+    
+    required init() {
+        super.init()
+        name = "XPR 50"
+        classType = XPR50.self
+    }
+}
 class XPR50: BaseWeapon {
     
-    init(gunLayer: CALayer, shootLayer: CALayer) {
-        super.init(gunLayer: gunLayer, shootLayer: shootLayer, gunImage: #imageLiteral(resourceName: "rifle-xpr50-1").cgImage!)
+    required init(gunLayer: CALayer, shootLayer: CALayer) {
+        super.init(gunLayer: gunLayer, shootLayer: shootLayer, gunImage: #imageLiteral(resourceName: "rifle-xpr50-1").cgImage)
         
         audioPlayer = try? AVAudioPlayer(data: NSDataAsset(name: "XPR50-sound")!.data, fileTypeHint: AVFileTypeCoreAudioFormat)
         
@@ -24,14 +33,28 @@ class XPR50: BaseWeapon {
             #imageLiteral(resourceName: "rifle-xpr50-3").cgImage!,
             
         ]
+        
+        lifeDemage = 0.1
     }
 }
 
 
+
+// MARK: - BaseWeapon
+class BaseWeaponType {
+    
+    var name = "Some Weapon"
+    
+    var classType: BaseWeapon.Type?
+    
+    required init() {}
+}
 class BaseWeapon {
     
+    var lifeDemage: Float = 0.05
+    
     /// overide z child class
-    var gunImage: CGImage
+    var gunImage: CGImage?
     
     var audioPlayer: AVAudioPlayer?
     
@@ -45,7 +68,11 @@ class BaseWeapon {
     
     let shootLayer: CALayer
     
-    init(gunLayer: CALayer, shootLayer: CALayer, gunImage: CGImage) {
+    required convenience init(gunLayer: CALayer, shootLayer: CALayer) {
+        self.init(gunLayer: gunLayer, shootLayer: shootLayer, gunImage: nil)
+    }
+    
+    init(gunLayer: CALayer, shootLayer: CALayer, gunImage: CGImage?) {
         self.gunLayer = gunLayer
         self.shootLayer = shootLayer
         self.gunImage = gunImage

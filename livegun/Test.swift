@@ -398,18 +398,3 @@ extension TestViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     }
 }
 
-// MARK: FACE EFFECTS
-
-fileprivate extension TestViewController {
-    
-    func addKrvaveFrkance() {
-        let layer = CALayer()
-        layer.contents = #imageLiteral(resourceName: "FE-krvave-frkance").cgImage
-        layer.contentsGravity = kCAGravityResizeAspect
-        
-        
-        
-        layer.backgroundColor = UIColor.red.cgColor
-    }
-}
-

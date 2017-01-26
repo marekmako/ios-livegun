@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="WaZ-yq-Hs0">
     <device id="retina4_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -56,6 +58,143 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.28185907046478" y="136.80000000000001"/>
+        </scene>
+        <!--Main View Controller-->
+        <scene sceneID="q4t-gW-AKg">
+            <objects>
+                <viewController id="WaZ-yq-Hs0" userLabel="Main View Controller" customClass="MainViewController" customModule="livegun" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qCA-hp-qmp"/>
+                        <viewControllerLayoutGuide type="bottom" id="l2a-uU-GvJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Pdy-YC-Okn">
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eN3-0t-TmR">
+                                <rect key="frame" x="295.5" y="172" width="75" height="30"/>
+                                <state key="normal" title="New Game"/>
+                                <connections>
+                                    <segue destination="0Zt-IB-tIa" kind="presentation" id="Ivg-gy-NiQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="eN3-0t-TmR" firstAttribute="centerX" secondItem="Pdy-YC-Okn" secondAttribute="centerX" id="3lS-Z2-8aS"/>
+                            <constraint firstItem="eN3-0t-TmR" firstAttribute="centerY" secondItem="Pdy-YC-Okn" secondAttribute="centerY" id="Sce-ee-Ttm"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <segue destination="4sE-dT-kl5" kind="presentation" identifier="VideoViewControllerSegue" id="bWx-gJ-1RT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q9C-mS-U52" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="136" y="934"/>
+        </scene>
+        <!--Weapon Page View Controller-->
+        <scene sceneID="wYt-MX-MMK">
+            <objects>
+                <pageViewController storyboardIdentifier="WeaponPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="0Zt-IB-tIa" customClass="WeaponPageViewController" customModule="livegun" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JV3-Dd-oxO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="913" y="591"/>
+        </scene>
+        <!--Weapon View Controller-->
+        <scene sceneID="Lbr-8t-PPb">
+            <objects>
+                <viewController storyboardIdentifier="WeaponViewController" id="thV-pr-crA" customClass="WeaponViewController" customModule="livegun" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="slq-yA-MOj"/>
+                        <viewControllerLayoutGuide type="bottom" id="dTV-HU-Gh5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lKr-FA-I2F">
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eqV-dB-PDg">
+                                <rect key="frame" x="312" y="177" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GkJ-FF-lvL">
+                                <rect key="frame" x="311" y="206" width="44" height="30"/>
+                                <state key="normal" title="Select"/>
+                                <connections>
+                                    <action selector="onSelectWeapon" destination="thV-pr-crA" eventType="touchUpInside" id="rTw-mC-iFp"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="eqV-dB-PDg" firstAttribute="centerX" secondItem="lKr-FA-I2F" secondAttribute="centerX" id="Bp0-uB-hya"/>
+                            <constraint firstItem="GkJ-FF-lvL" firstAttribute="centerX" secondItem="lKr-FA-I2F" secondAttribute="centerX" id="UHQ-Qk-V8c"/>
+                            <constraint firstItem="eqV-dB-PDg" firstAttribute="centerY" secondItem="lKr-FA-I2F" secondAttribute="centerY" id="nqn-71-LOF"/>
+                            <constraint firstItem="GkJ-FF-lvL" firstAttribute="top" secondItem="eqV-dB-PDg" secondAttribute="bottom" constant="8" id="rw5-jc-sun"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="weaponNameLabel" destination="eqV-dB-PDg" id="OHH-SP-nPC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UNv-Hc-Dl2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1617" y="590"/>
+        </scene>
+        <!--Video View Controller-->
+        <scene sceneID="Hks-Eo-lm7">
+            <objects>
+                <viewController storyboardIdentifier="VideoViewController" id="4sE-dT-kl5" customClass="VideoViewController" customModule="livegun" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ecq-Nd-4Sq"/>
+                        <viewControllerLayoutGuide type="bottom" id="kzV-lr-bdG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eKw-Qj-S8s">
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KHW-0P-8HY">
+                                <rect key="frame" x="20" y="28" width="49" height="30"/>
+                                <state key="normal" title="Stierac"/>
+                                <connections>
+                                    <action selector="onStieracClick" destination="4sE-dT-kl5" eventType="touchUpInside" id="cQA-qs-DIx"/>
+                                </connections>
+                            </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="1" translatesAutoresizingMaskIntoConstraints="NO" id="4xc-DN-yyV">
+                                <rect key="frame" x="447" y="28" width="200" height="37.5"/>
+                                <color key="progressTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Searching Target ..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPp-Sy-hAq">
+                                <rect key="frame" x="447" y="28" width="200" height="37.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4xc-DN-yyV" firstAttribute="top" secondItem="ecq-Nd-4Sq" secondAttribute="bottom" constant="8" id="BHi-yS-fgc"/>
+                            <constraint firstItem="4xc-DN-yyV" firstAttribute="height" secondItem="eKw-Qj-S8s" secondAttribute="height" multiplier="0.1" id="Ihz-Oz-NFS"/>
+                            <constraint firstItem="KPp-Sy-hAq" firstAttribute="height" secondItem="eKw-Qj-S8s" secondAttribute="height" multiplier="0.1" id="LJx-Lz-5BH"/>
+                            <constraint firstItem="KHW-0P-8HY" firstAttribute="top" secondItem="ecq-Nd-4Sq" secondAttribute="bottom" constant="8" id="Mnc-CH-uR9"/>
+                            <constraint firstItem="4xc-DN-yyV" firstAttribute="width" secondItem="eKw-Qj-S8s" secondAttribute="width" multiplier="0.3" id="Ylp-o1-Xcd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="KPp-Sy-hAq" secondAttribute="trailing" id="Z2Q-CN-64g"/>
+                            <constraint firstItem="KHW-0P-8HY" firstAttribute="leading" secondItem="eKw-Qj-S8s" secondAttribute="leadingMargin" id="dNl-Sd-BuY"/>
+                            <constraint firstItem="KPp-Sy-hAq" firstAttribute="top" secondItem="ecq-Nd-4Sq" secondAttribute="bottom" constant="8" id="f6H-Bg-mf1"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="4xc-DN-yyV" secondAttribute="trailing" id="s6a-M6-UGJ"/>
+                            <constraint firstItem="KPp-Sy-hAq" firstAttribute="width" secondItem="eKw-Qj-S8s" secondAttribute="width" multiplier="0.3" id="uib-Py-2Ek"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="lifeProgressView" destination="4xc-DN-yyV" id="Udr-yS-EPS"/>
+                        <outlet property="searchingTargetLabel" destination="KPp-Sy-hAq" id="HgQ-gF-kVY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fvs-ck-6BD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="912.5937031484259" y="1325.5999999999999"/>
         </scene>
     </scenes>
 </document>

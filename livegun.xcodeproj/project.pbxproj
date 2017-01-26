@@ -12,6 +12,10 @@
 		20682FF31E2A039100DEBA13 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20682FF21E2A039100DEBA13 /* Test.swift */; };
 		20682FF61E2A039100DEBA13 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20682FF41E2A039100DEBA13 /* Main.storyboard */; };
 		20682FFB1E2A039100DEBA13 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20682FF91E2A039100DEBA13 /* LaunchScreen.storyboard */; };
+		20DFCC751E38A135007C3306 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DFCC741E38A135007C3306 /* VideoViewController.swift */; };
+		20DFCC771E38A2FD007C3306 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DFCC761E38A2FD007C3306 /* MainViewController.swift */; };
+		20DFCC791E39E2C3007C3306 /* WeaponPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DFCC781E39E2C3007C3306 /* WeaponPageViewController.swift */; };
+		20DFCC7B1E39E2EC007C3306 /* WeaponViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DFCC7A1E39E2EC007C3306 /* WeaponViewController.swift */; };
 		20F68F8B1E350D480022D151 /* HitEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F68F8A1E350D480022D151 /* HitEffects.swift */; };
 		20FF65BC1E2A8A2800BFBF10 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20FF65BB1E2A8A2800BFBF10 /* Media.xcassets */; };
 /* End PBXBuildFile section */
@@ -24,6 +28,10 @@
 		20682FF51E2A039100DEBA13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		20682FFA1E2A039100DEBA13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		20682FFC1E2A039100DEBA13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		20DFCC741E38A135007C3306 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		20DFCC761E38A2FD007C3306 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		20DFCC781E39E2C3007C3306 /* WeaponPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeaponPageViewController.swift; path = ../WeaponPageViewController.swift; sourceTree = "<group>"; };
+		20DFCC7A1E39E2EC007C3306 /* WeaponViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeaponViewController.swift; path = ../WeaponViewController.swift; sourceTree = "<group>"; };
 		20F68F8A1E350D480022D151 /* HitEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitEffects.swift; sourceTree = "<group>"; };
 		20FF65BB1E2A8A2800BFBF10 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -58,6 +66,10 @@
 		20682FEF1E2A039100DEBA13 /* livegun */ = {
 			isa = PBXGroup;
 			children = (
+				20DFCC761E38A2FD007C3306 /* MainViewController.swift */,
+				20DFCC741E38A135007C3306 /* VideoViewController.swift */,
+				20DFCC781E39E2C3007C3306 /* WeaponPageViewController.swift */,
+				20DFCC7A1E39E2EC007C3306 /* WeaponViewController.swift */,
 				2065BA7C1E371EA000433880 /* Weapons.swift */,
 				20F68F8A1E350D480022D151 /* HitEffects.swift */,
 				20682FF41E2A039100DEBA13 /* Main.storyboard */,
@@ -146,6 +158,10 @@
 				20F68F8B1E350D480022D151 /* HitEffects.swift in Sources */,
 				2065BA7D1E371EA000433880 /* Weapons.swift in Sources */,
 				20682FF31E2A039100DEBA13 /* Test.swift in Sources */,
+				20DFCC771E38A2FD007C3306 /* MainViewController.swift in Sources */,
+				20DFCC791E39E2C3007C3306 /* WeaponPageViewController.swift in Sources */,
+				20DFCC751E38A135007C3306 /* VideoViewController.swift in Sources */,
+				20DFCC7B1E39E2EC007C3306 /* WeaponViewController.swift in Sources */,
 				20682FF11E2A039100DEBA13 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
