@@ -12,10 +12,12 @@ import AVFoundation
 
 class HitEffects {
     /// hlavny layer pouziva sa na krvave frkance
-    private let videoLayer: CALayer!
+    let videoLayer: CALayer!
+    
+    let effectsLayer = CALayer()
     
     /// vyuziva sa na efekty na tvari
-    private let faceLayer: CALayer!
+    let faceLayer: CALayer!
     
     private let laveOkoLayer: CALayer!
     
@@ -34,13 +36,17 @@ class HitEffects {
         RezPraveOko.self,
         OhenNaHlave.self,
         VidlickaDoBrady.self,
-        PilaDoCela.self
+        PilaDoCela.self,
     ]
     
     private var effectsInUse = [BaseHitEffect]()
     
     init(videoLayer: CALayer, faceLayer: CALayer, laveOkoLayer: CALayer, praveOkoLayer: CALayer, ustaLayer: CALayer) {
         self.videoLayer = videoLayer
+        self.videoLayer.addSublayer(effectsLayer)
+        
+        effectsLayer.frame = videoLayer.bounds
+        
         self.faceLayer = faceLayer
         self.laveOkoLayer = laveOkoLayer
         self.praveOkoLayer = praveOkoLayer
@@ -48,11 +54,11 @@ class HitEffects {
     }
     
     func onHit() {
-        krvaveFrkanceCollection.append(KrvaveFrkance(parent: videoLayer))
+        krvaveFrkanceCollection.append(KrvaveFrkance(parent: effectsLayer))
         
-        guard arc4random_uniform(10) < 3 else {
-            return
-        }
+//        guard arc4random_uniform(10) < 3 else {
+//            return
+//        }
         
         guard !availableEffects.isEmpty else {
             return
@@ -61,23 +67,32 @@ class HitEffects {
         let effectType = availableEffects.remove(at: effectIndex)
         
         switch effectType {
-        case is Sekera.Type, is KrvaveStrelyCelo.Type, is OhenNaHlave.Type, is PilaDoCela.Type:
-            effectsInUse.append(effectType.init(parent: faceLayer))
+        case is Sekera.Type:
+            effectsInUse.append((effectType as! Sekera.Type).init(parent: effectsLayer, face: faceLayer))
+            break
+        case is PilaDoCela.Type:
+            effectsInUse.append((effectType as! PilaDoCela.Type).init(parent: effectsLayer, face: faceLayer))
+            break
+        case is OhenNaHlave.Type:
+            effectsInUse.append((effectType as! OhenNaHlave.Type).init(parent: effectsLayer, face: faceLayer))
+            break
+        case is KrvaveStrelyCelo.Type:
+            effectsInUse.append((effectType as! KrvaveStrelyCelo.Type).init(parent: effectsLayer, face: faceLayer))
             break
         case is ModrinaLaveOko.Type:
-            effectsInUse.append((effectType as! ModrinaLaveOko.Type).init(parent: videoLayer, face: faceLayer, laveOko: laveOkoLayer))
+            effectsInUse.append((effectType as! ModrinaLaveOko.Type).init(parent: effectsLayer, face: faceLayer, laveOko: laveOkoLayer))
             break
         case is ModrinaPraveOko.Type:
-            effectsInUse.append((effectType as! ModrinaPraveOko.Type).init(parent: videoLayer, face: faceLayer, praveOko: praveOkoLayer))
+            effectsInUse.append((effectType as! ModrinaPraveOko.Type).init(parent: effectsLayer, face: faceLayer, praveOko: praveOkoLayer))
             break
         case is RezPraveOko.Type:
-            effectsInUse.append((effectType as! RezPraveOko.Type).init(parent: videoLayer, face: faceLayer, praveOko: praveOkoLayer))
+            effectsInUse.append((effectType as! RezPraveOko.Type).init(parent: effectsLayer, face: faceLayer, praveOko: praveOkoLayer))
             break
         case is UstaKrv.Type:
-            effectsInUse.append((effectType as! UstaKrv.Type).init(parent: videoLayer, face: faceLayer, usta: ustaLayer))
+            effectsInUse.append((effectType as! UstaKrv.Type).init(parent: effectsLayer, face: faceLayer, usta: ustaLayer))
             break
         case is VidlickaDoBrady.Type:
-            effectsInUse.append((effectType as! VidlickaDoBrady.Type).init(parent: videoLayer, face: faceLayer, usta: ustaLayer))
+            effectsInUse.append((effectType as! VidlickaDoBrady.Type).init(parent: effectsLayer, face: faceLayer, usta: ustaLayer))
             break
         default:
             #if DEBUG
@@ -170,21 +185,28 @@ fileprivate class Sekera: BaseHitEffect {
     
     let scaleAgainstParent: CGFloat = 1
     
+    var faceLayer: CALayer!
+    
+    required convenience init(parent parentLayer: CALayer, face faceLayer: CALayer!) {
+        self.init(parent: parentLayer)
+        self.faceLayer = faceLayer
+        updateLayerFrameAgainsParent()
+    }
+    
     required init(parent parentLayer: CALayer) {
         super.init(parent: parentLayer)
         
         layer.contents = #imageLiteral(resourceName: "FE-sekera").cgImage
         soundData = NSDataAsset(name: "FE-sekera-sound")
 
-        updateLayerFrameAgainsParent()
         playSound()
     }
     
     override func updateLayerFrameAgainsParent() {
-        let size = CGSize(width: parentLayer.bounds.width * scaleAgainstParent,
-                          height: parentLayer.bounds.height * scaleAgainstParent)
+        let size = CGSize(width: faceLayer.bounds.width * scaleAgainstParent,
+                          height: faceLayer.bounds.height * scaleAgainstParent)
         
-        layer.frame = CGRect(x: -(size.width / 2), y: -(size.height / 2), width: size.width, height: size.height)
+        layer.frame = CGRect(x: faceLayer.frame.minX - (size.width / 2), y: faceLayer.frame.minY - (size.height / 2), width: size.width, height: size.height)
     }
     
     override func hideLayerFrame() {
@@ -196,21 +218,28 @@ fileprivate class PilaDoCela: BaseHitEffect {
     
     let scaleAgainstParent: CGFloat = 1
     
+    var faceLayer: CALayer!
+    
+    required convenience init(parent parentLayer: CALayer, face faceLayer: CALayer!) {
+        self.init(parent: parentLayer)
+        self.faceLayer = faceLayer
+        updateLayerFrameAgainsParent()
+    }
+    
     required init(parent parentLayer: CALayer) {
         super.init(parent: parentLayer)
         
         layer.contents = #imageLiteral(resourceName: "FE-pila-do-cela").cgImage
         soundData = NSDataAsset(name: "FE-pila-do-cela-sound")
         
-        updateLayerFrameAgainsParent()
         playSound()
     }
     
     override func updateLayerFrameAgainsParent() {
-        let size = CGSize(width: parentLayer.bounds.width * scaleAgainstParent,
-                          height: parentLayer.bounds.height * scaleAgainstParent)
+        let size = CGSize(width: faceLayer.bounds.width * scaleAgainstParent,
+                          height: faceLayer.bounds.height * scaleAgainstParent)
         
-        layer.frame = CGRect(x: parentLayer.bounds.width / 2, y: -(size.height / 4), width: size.width, height: size.height)
+        layer.frame = CGRect(x: faceLayer.frame.midX * 1.05, y: faceLayer.frame.minY - (size.height / 4), width: size.width, height: size.height)
     }
     
     override func hideLayerFrame() {
@@ -222,21 +251,28 @@ fileprivate class OhenNaHlave: BaseHitEffect {
     
     let scaleAgainstParent: CGFloat = 0.8
     
+    var faceLayer: CALayer!
+    
+    required convenience init(parent parentLayer: CALayer, face faceLayer: CALayer!) {
+        self.init(parent: parentLayer)
+        self.faceLayer = faceLayer
+        updateLayerFrameAgainsParent()
+    }
+    
     required init(parent parentLayer: CALayer) {
         super.init(parent: parentLayer)
         
         layer.contents = #imageLiteral(resourceName: "FE-ohen-na-hlave").cgImage
         soundData = NSDataAsset(name: "FE-ohen-na-hlave-sound")
         
-        updateLayerFrameAgainsParent()
         playSound()
     }
     
     override func updateLayerFrameAgainsParent() {
-        let size = CGSize(width: parentLayer.bounds.width * scaleAgainstParent,
-                          height: parentLayer.bounds.height * scaleAgainstParent)
+        let size = CGSize(width: faceLayer.bounds.width * scaleAgainstParent,
+                          height: faceLayer.bounds.height * scaleAgainstParent)
         
-        layer.frame = CGRect(x: parentLayer.bounds.width / 2 - size.width / 2, y: -size.height / 3 * 2, width: size.width, height: size.height)
+        layer.frame = CGRect(x: faceLayer.frame.midX - size.width / 2, y: faceLayer.frame.minY - (size.height / 4) * 3, width: size.width, height: size.height)
     }
     
     override func hideLayerFrame() {
@@ -248,21 +284,28 @@ fileprivate class KrvaveStrelyCelo: BaseHitEffect {
     
     let scaleAgainstParent: CGFloat = 0.8
     
+    var faceLayer: CALayer!
+    
+    required convenience init(parent parentLayer: CALayer, face faceLayer: CALayer!) {
+        self.init(parent: parentLayer)
+        self.faceLayer = faceLayer
+        updateLayerFrameAgainsParent()
+    }
+    
     required init(parent parentLayer: CALayer) {
         super.init(parent: parentLayer)
         
         layer.contents = #imageLiteral(resourceName: "FE-krvave-strely-celo").cgImage
         soundData = NSDataAsset(name: "FE-krvave-strely-celo-sound")
         
-        updateLayerFrameAgainsParent()
         playSound()
     }
     
     override func updateLayerFrameAgainsParent() {
-        let size = CGSize(width: parentLayer.bounds.width * scaleAgainstParent,
-                          height: parentLayer.bounds.height * scaleAgainstParent)
+        let size = CGSize(width: faceLayer.bounds.width * scaleAgainstParent,
+                          height: faceLayer.bounds.height * scaleAgainstParent)
         
-        layer.frame = CGRect(x: size.width / 5, y: -(size.height / 5), width: size.width, height: size.height)
+        layer.frame = CGRect(x: faceLayer.frame.midX - size.width / 2, y: faceLayer.frame.minY, width: size.width, height: size.height)
     }
     
     override func hideLayerFrame() {

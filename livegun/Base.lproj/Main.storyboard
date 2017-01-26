@@ -143,6 +143,55 @@
             </objects>
             <point key="canvasLocation" x="1617" y="590"/>
         </scene>
+        <!--Photo View Controller-->
+        <scene sceneID="1Ro-yP-wIm">
+            <objects>
+                <viewController id="0fd-Kv-L5G" customClass="PhotoViewController" customModule="livegun" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GfP-F4-pcM"/>
+                        <viewControllerLayoutGuide type="bottom" id="Fih-hW-rea"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ygy-mA-oar">
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NLf-b4-1ph">
+                                <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="78q-X8-8ya">
+                                <rect key="frame" x="20" y="28" width="30" height="30"/>
+                                <state key="normal" title="X"/>
+                                <connections>
+                                    <action selector="onCancel" destination="0fd-Kv-L5G" eventType="touchUpInside" id="4qw-tz-gI9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lU6-m1-ETI">
+                                <rect key="frame" x="313" y="325" width="40" height="30"/>
+                                <state key="normal" title="Share"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="NLf-b4-1ph" firstAttribute="top" secondItem="ygy-mA-oar" secondAttribute="top" id="6cD-ML-89k"/>
+                            <constraint firstItem="lU6-m1-ETI" firstAttribute="centerX" secondItem="ygy-mA-oar" secondAttribute="centerX" id="NnU-LS-9mU"/>
+                            <constraint firstAttribute="trailing" secondItem="NLf-b4-1ph" secondAttribute="trailing" id="XKM-59-3A7"/>
+                            <constraint firstItem="Fih-hW-rea" firstAttribute="top" secondItem="lU6-m1-ETI" secondAttribute="bottom" constant="20" id="dtz-nc-nRf"/>
+                            <constraint firstItem="78q-X8-8ya" firstAttribute="leading" secondItem="ygy-mA-oar" secondAttribute="leadingMargin" id="gXi-um-FlT"/>
+                            <constraint firstItem="78q-X8-8ya" firstAttribute="top" secondItem="GfP-F4-pcM" secondAttribute="bottom" constant="8" id="oV0-ER-R76"/>
+                            <constraint firstItem="Fih-hW-rea" firstAttribute="top" secondItem="NLf-b4-1ph" secondAttribute="bottom" id="qRw-fp-tnL"/>
+                            <constraint firstItem="NLf-b4-1ph" firstAttribute="leading" secondItem="ygy-mA-oar" secondAttribute="leading" id="vDE-hX-AXN"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="78q-X8-8ya" id="ReO-BL-4YF"/>
+                        <outlet property="photoImageView" destination="NLf-b4-1ph" id="Jri-Rt-fM2"/>
+                        <outlet property="shareButton" destination="lU6-m1-ETI" id="tea-BE-uQu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3OI-ZS-nxI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1616.9415292353824" y="1325.5999999999999"/>
+        </scene>
         <!--Video View Controller-->
         <scene sceneID="Hks-Eo-lm7">
             <objects>
@@ -155,13 +204,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KHW-0P-8HY">
-                                <rect key="frame" x="20" y="28" width="49" height="30"/>
-                                <state key="normal" title="Stierac"/>
-                                <connections>
-                                    <action selector="onStieracClick" destination="4sE-dT-kl5" eventType="touchUpInside" id="cQA-qs-DIx"/>
-                                </connections>
-                            </button>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="1" translatesAutoresizingMaskIntoConstraints="NO" id="4xc-DN-yyV">
                                 <rect key="frame" x="447" y="28" width="200" height="37.5"/>
                                 <color key="progressTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -172,24 +214,59 @@
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kills: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fnl-3c-hQj">
+                                <rect key="frame" x="20" y="351" width="40.5" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EfO-jT-4nQ">
+                                <rect key="frame" x="20" y="28" width="30" height="30"/>
+                                <state key="normal" title="X"/>
+                                <connections>
+                                    <action selector="onCancel" destination="4sE-dT-kl5" eventType="touchUpInside" id="f1Y-BT-1bw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5cZ-9Z-ZMZ">
+                                <rect key="frame" x="20" y="120" width="41" height="30"/>
+                                <state key="normal" title="Photo"/>
+                                <connections>
+                                    <action selector="onPhoto" destination="4sE-dT-kl5" eventType="touchUpInside" id="8tG-nY-Z58"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KHW-0P-8HY">
+                                <rect key="frame" x="20" y="74" width="49" height="30"/>
+                                <state key="normal" title="Stierac"/>
+                                <connections>
+                                    <action selector="onStieracClick" destination="4sE-dT-kl5" eventType="touchUpInside" id="cQA-qs-DIx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="KHW-0P-8HY" firstAttribute="top" secondItem="EfO-jT-4nQ" secondAttribute="bottom" constant="16" id="9av-tP-dRf"/>
                             <constraint firstItem="4xc-DN-yyV" firstAttribute="top" secondItem="ecq-Nd-4Sq" secondAttribute="bottom" constant="8" id="BHi-yS-fgc"/>
+                            <constraint firstItem="KHW-0P-8HY" firstAttribute="leading" secondItem="eKw-Qj-S8s" secondAttribute="leadingMargin" id="CcL-Ht-T6M"/>
                             <constraint firstItem="4xc-DN-yyV" firstAttribute="height" secondItem="eKw-Qj-S8s" secondAttribute="height" multiplier="0.1" id="Ihz-Oz-NFS"/>
                             <constraint firstItem="KPp-Sy-hAq" firstAttribute="height" secondItem="eKw-Qj-S8s" secondAttribute="height" multiplier="0.1" id="LJx-Lz-5BH"/>
-                            <constraint firstItem="KHW-0P-8HY" firstAttribute="top" secondItem="ecq-Nd-4Sq" secondAttribute="bottom" constant="8" id="Mnc-CH-uR9"/>
+                            <constraint firstItem="kzV-lr-bdG" firstAttribute="top" secondItem="Fnl-3c-hQj" secondAttribute="bottom" constant="8" id="LcL-pp-2gK"/>
+                            <constraint firstItem="5cZ-9Z-ZMZ" firstAttribute="leading" secondItem="eKw-Qj-S8s" secondAttribute="leadingMargin" id="O81-Ac-8Ai"/>
                             <constraint firstItem="4xc-DN-yyV" firstAttribute="width" secondItem="eKw-Qj-S8s" secondAttribute="width" multiplier="0.3" id="Ylp-o1-Xcd"/>
                             <constraint firstAttribute="trailingMargin" secondItem="KPp-Sy-hAq" secondAttribute="trailing" id="Z2Q-CN-64g"/>
-                            <constraint firstItem="KHW-0P-8HY" firstAttribute="leading" secondItem="eKw-Qj-S8s" secondAttribute="leadingMargin" id="dNl-Sd-BuY"/>
+                            <constraint firstItem="Fnl-3c-hQj" firstAttribute="leading" secondItem="eKw-Qj-S8s" secondAttribute="leadingMargin" id="dHT-4k-f7y"/>
                             <constraint firstItem="KPp-Sy-hAq" firstAttribute="top" secondItem="ecq-Nd-4Sq" secondAttribute="bottom" constant="8" id="f6H-Bg-mf1"/>
+                            <constraint firstItem="EfO-jT-4nQ" firstAttribute="top" secondItem="ecq-Nd-4Sq" secondAttribute="bottom" constant="8" id="rpV-jz-1wG"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4xc-DN-yyV" secondAttribute="trailing" id="s6a-M6-UGJ"/>
+                            <constraint firstItem="EfO-jT-4nQ" firstAttribute="leading" secondItem="eKw-Qj-S8s" secondAttribute="leadingMargin" id="sbJ-fN-nIJ"/>
+                            <constraint firstItem="5cZ-9Z-ZMZ" firstAttribute="top" secondItem="KHW-0P-8HY" secondAttribute="bottom" constant="16" id="t4J-rT-NY0"/>
                             <constraint firstItem="KPp-Sy-hAq" firstAttribute="width" secondItem="eKw-Qj-S8s" secondAttribute="width" multiplier="0.3" id="uib-Py-2Ek"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="killCntLabel" destination="Fnl-3c-hQj" id="yvg-XB-rKh"/>
                         <outlet property="lifeProgressView" destination="4xc-DN-yyV" id="Udr-yS-EPS"/>
                         <outlet property="searchingTargetLabel" destination="KPp-Sy-hAq" id="HgQ-gF-kVY"/>
+                        <segue destination="0fd-Kv-L5G" kind="presentation" identifier="PhotoViewControllerSegue" id="bNZ-Hy-UGn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fvs-ck-6BD" userLabel="First Responder" sceneMemberID="firstResponder"/>

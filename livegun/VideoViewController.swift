@@ -12,10 +12,20 @@ import AVFoundation
 class VideoViewController: UIViewController {
     
     /// from segue
-    var weaponType: BaseWeapon.Type!
-    var weapon: BaseWeapon!
+    var mainVC: MainViewController!
     
-    var audioPlayer: AVAudioPlayer?
+    /// from segue
+    var weaponType: BaseWeapon.Type!
+    
+    fileprivate var isInitialized = false
+    
+    fileprivate var currImage: CIImage?
+    
+    fileprivate var weapon: BaseWeapon!
+    
+    fileprivate let killScore = Kills()
+    
+    fileprivate var audioPlayer: AVAudioPlayer?
     
     // video
     fileprivate let avSession = AVCaptureSession()
@@ -23,7 +33,7 @@ class VideoViewController: UIViewController {
     fileprivate var videoLayerConnection: AVCaptureConnection?
     
     // layers
-    fileprivate var videoLayer: AVCaptureVideoPreviewLayer!
+    var videoLayer: AVCaptureVideoPreviewLayer!
     
     fileprivate let faceLayer = CALayer()
     fileprivate let leftEyeLayer = CALayer()
@@ -45,27 +55,54 @@ class VideoViewController: UIViewController {
                                               options: [CIDetectorAccuracy : CIDetectorAccuracyLow , /*CIDetectorTracking : true*/])!
     
     // actions
+    @IBAction func onCancel() {
+        mainVC.dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func onStieracClick() {
         runStierac()
     }
     
-    // outlets
-    var life: Float = 1 {
+    @IBAction func onPhoto() {
+        guard currImage != nil else {
+            return
+        }
+        performSegue(withIdentifier: "PhotoViewControllerSegue", sender: nil)
+    }
+    
+    // outlets && support outlets
+    fileprivate var isAlive = true
+    
+    fileprivate var life: Float = 1 {
         didSet {
-            if life == 0 {
-                // TODO: umrel som
+            if life <= 0 && isAlive {
+                isAlive = false
+                killScore.addScore()
+                updateKillLabel()
+                
             }
             lifeProgressView.progress = life
         }
     }
-    
     @IBOutlet weak var lifeProgressView: UIProgressView!
+    
     @IBOutlet weak var searchingTargetLabel: UILabel!
+    
+    @IBOutlet weak var killCntLabel: UILabel!
+}
+
+
+// MARK: HELPERS 
+fileprivate extension VideoViewController {
+    
+    func updateKillLabel() {
+        killCntLabel.text = "Kills: \(killScore.cnt)"
+    }
 }
 
 
 // MARK: ACTIONS
-extension VideoViewController {
+fileprivate extension VideoViewController {
     
     func runStierac() {
         let stieracAnimation = CAKeyframeAnimation(keyPath: "contents")
@@ -103,19 +140,28 @@ extension VideoViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         #if DEBUG
+            guard mainVC != nil else {
+                fatalError()
+            }
             guard weaponType != nil else {
                 fatalError()
             }
         #endif
         
         lifeProgressView.isHidden = true
+        
         weapon = weaponType.init(gunLayer: gunLayer, shootLayer: shootLayer)
+        
+        updateKillLabel()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        setup()
+        if !isInitialized {
+            isInitialized = true
+            setup()
+        }
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -125,16 +171,25 @@ extension VideoViewController {
         videoOutputConnection?.videoOrientation = currentOrientation
         videoLayerConnection?.videoOrientation = currentOrientation
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let photoVC = segue.destination as? PhotoViewController {
+            
+//            UIGraphicsBeginImageContext(view.frame.size)
+//            view.layer.render(in: UIGraphicsGetCurrentContext()!)
+//            let image = UIGraphicsGetImageFromCurrentImageContext()
+//            UIGraphicsEndImageContext()
+            
+//            UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, UIScreen.main.scale)
+//            view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
+//            let image = UIGraphicsGetImageFromCurrentImageContext()!
+//            UIGraphicsEndImageContext()
+            
+            photoVC.photoImage = UIImage(ciImage: currImage!)
+            photoVC.hitEffects = hitEffects
+            photoVC.videoVC = self
+        }
     }
-    */
 }
 
 
@@ -347,6 +402,7 @@ extension VideoViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
             #endif
         }
         let ciImage = CIImage(cvImageBuffer: cvImageBuffer)
+        currImage = ciImage
         faceDetection(from: ciImage)
     }
     

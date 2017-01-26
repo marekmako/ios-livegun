@@ -39,6 +39,7 @@ extension MainViewController {
             weaponPageVC.mainVC = self
             
         } else if let videoVC = segue.destination as? VideoViewController {
+            videoVC.mainVC = self
             videoVC.weaponType = selectedWeaponType!.classType!
             selectedWeaponType = nil
         }
