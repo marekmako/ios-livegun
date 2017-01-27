@@ -10,8 +10,12 @@ import UIKit
 
 class MainViewController: UIViewController {
     
+    fileprivate let kills = Kills()
+    
     /// nastavene po unwinde z WeaponViewController, kde si hrac vybral zbran po pouziti vo videoVC je zbran vynulovana
     var selectedWeaponType: BaseWeaponType?
+    
+    @IBOutlet weak var killedLabel: UILabel!
 }
 
 // MARK: - LIFECYCLE
@@ -29,6 +33,8 @@ extension MainViewController {
         if selectedWeaponType != nil {
             performSegue(withIdentifier: "VideoViewControllerSegue", sender: nil)
         }
+        
+        killedLabel.text = "\(kills.cnt)"
     }
 
     // MARK: - Navigation

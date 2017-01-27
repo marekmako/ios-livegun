@@ -71,27 +71,55 @@
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eN3-0t-TmR">
-                                <rect key="frame" x="295.5" y="172" width="75" height="30"/>
-                                <state key="normal" title="New Game"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main-screen-background" translatesAutoresizingMaskIntoConstraints="NO" id="uag-aE-xKI">
+                                <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eN3-0t-TmR">
+                                <rect key="frame" x="180" y="154" width="307" height="67"/>
+                                <state key="normal" title="New Game" backgroundImage="main-screen-button"/>
                                 <connections>
                                     <segue destination="0Zt-IB-tIa" kind="presentation" id="Ivg-gy-NiQ"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Zc-kq-Ki8">
+                                <rect key="frame" x="249.5" y="44" width="168.5" height="32"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main-screen-killed" translatesAutoresizingMaskIntoConstraints="NO" id="2kn-An-OCL">
+                                        <rect key="frame" x="0.0" y="0.0" width="147" height="32"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t8m-2n-8tK">
+                                        <rect key="frame" x="147" y="0.0" width="21.5" height="32"/>
+                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="30"/>
+                                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="eN3-0t-TmR" firstAttribute="centerX" secondItem="Pdy-YC-Okn" secondAttribute="centerX" id="3lS-Z2-8aS"/>
-                            <constraint firstItem="eN3-0t-TmR" firstAttribute="centerY" secondItem="Pdy-YC-Okn" secondAttribute="centerY" id="Sce-ee-Ttm"/>
+                            <constraint firstItem="eN3-0t-TmR" firstAttribute="centerY" secondItem="Pdy-YC-Okn" secondAttribute="centerY" id="0HP-PV-FXv"/>
+                            <constraint firstAttribute="trailing" secondItem="uag-aE-xKI" secondAttribute="trailing" id="1ER-5m-2rH"/>
+                            <constraint firstItem="eN3-0t-TmR" firstAttribute="width" secondItem="uag-aE-xKI" secondAttribute="width" multiplier="0.46" id="AZB-lY-Ebm"/>
+                            <constraint firstItem="eN3-0t-TmR" firstAttribute="centerX" secondItem="Pdy-YC-Okn" secondAttribute="centerX" id="DTv-3r-r7b"/>
+                            <constraint firstItem="5Zc-kq-Ki8" firstAttribute="top" secondItem="qCA-hp-qmp" secondAttribute="bottom" constant="24" id="L86-XD-kyh"/>
+                            <constraint firstItem="uag-aE-xKI" firstAttribute="leading" secondItem="Pdy-YC-Okn" secondAttribute="leading" id="MOp-oW-ICl"/>
+                            <constraint firstItem="2kn-An-OCL" firstAttribute="height" secondItem="uag-aE-xKI" secondAttribute="height" multiplier="0.085" id="cOZ-hO-95p"/>
+                            <constraint firstItem="2kn-An-OCL" firstAttribute="width" secondItem="uag-aE-xKI" secondAttribute="width" multiplier="0.22" id="dtd-ZZ-QPm"/>
+                            <constraint firstItem="uag-aE-xKI" firstAttribute="top" secondItem="Pdy-YC-Okn" secondAttribute="top" id="ei8-cz-uO7"/>
+                            <constraint firstItem="5Zc-kq-Ki8" firstAttribute="centerX" secondItem="Pdy-YC-Okn" secondAttribute="centerX" id="h2y-Dx-xfd"/>
+                            <constraint firstItem="l2a-uU-GvJ" firstAttribute="top" secondItem="uag-aE-xKI" secondAttribute="bottom" id="nC7-Bs-qMw"/>
+                            <constraint firstItem="eN3-0t-TmR" firstAttribute="height" secondItem="uag-aE-xKI" secondAttribute="height" multiplier="0.18" id="z0w-ks-1cr"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="killedLabel" destination="t8m-2n-8tK" id="nBs-I8-LkI"/>
                         <segue destination="4sE-dT-kl5" kind="presentation" identifier="VideoViewControllerSegue" id="bWx-gJ-1RT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q9C-mS-U52" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136" y="934"/>
+            <point key="canvasLocation" x="135.38230884557723" y="933.60000000000002"/>
         </scene>
         <!--Weapon Page View Controller-->
         <scene sceneID="wYt-MX-MMK">
@@ -277,4 +305,9 @@
             <point key="canvasLocation" x="912.5937031484259" y="1325.5999999999999"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="main-screen-background" width="534" height="300"/>
+        <image name="main-screen-button" width="246" height="55"/>
+        <image name="main-screen-killed" width="156" height="29"/>
+    </resources>
 </document>
