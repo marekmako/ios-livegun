@@ -25,7 +25,7 @@ class VideoViewController: UIViewController {
     
     fileprivate let killScore = Kills()
     
-    fileprivate let extraSound = Sound()
+    fileprivate let extraSound = ExtraSound()
     
     fileprivate var audioPlayer: AVAudioPlayer?
     
@@ -177,17 +177,6 @@ extension VideoViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let photoVC = segue.destination as? PhotoViewController {
-            
-//            UIGraphicsBeginImageContext(view.frame.size)
-//            view.layer.render(in: UIGraphicsGetCurrentContext()!)
-//            let image = UIGraphicsGetImageFromCurrentImageContext()
-//            UIGraphicsEndImageContext()
-            
-//            UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, UIScreen.main.scale)
-//            view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
-//            let image = UIGraphicsGetImageFromCurrentImageContext()!
-//            UIGraphicsEndImageContext()
-            
             photoVC.photoImage = UIImage(ciImage: currImage!)
             photoVC.hitEffects = hitEffects
             photoVC.videoVC = self

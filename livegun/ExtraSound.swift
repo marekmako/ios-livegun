@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class Sound {
+class ExtraSound {
     
     private var player: AVAudioPlayer?
     
