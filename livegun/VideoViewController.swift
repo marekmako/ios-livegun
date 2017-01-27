@@ -80,8 +80,16 @@ class VideoViewController: UIViewController {
             if life <= 0 && isAlive {
                 isAlive = false
                 killScore.addScore()
+                extraSound.addKill()
                 updateKillLabel()
                 extraSound.playKill()
+                
+                let killCntLabelanimation = CABasicAnimation(keyPath: "transform.scale")
+                killCntLabelanimation.toValue = 2
+                killCntLabelanimation.duration = 0.2
+                killCntLabelanimation.repeatCount = 4
+                killCntLabelanimation.autoreverses = true
+                killCntLabel.layer.add(killCntLabelanimation, forKey: nil)
             }
             lifeProgressView.progress = life
         }

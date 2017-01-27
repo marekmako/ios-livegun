@@ -141,6 +141,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weapon-screen-background" translatesAutoresizingMaskIntoConstraints="NO" id="Ban-Yn-a1U">
+                                <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eqV-dB-PDg">
                                 <rect key="frame" x="312" y="177" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -158,9 +161,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="eqV-dB-PDg" firstAttribute="centerX" secondItem="lKr-FA-I2F" secondAttribute="centerX" id="Bp0-uB-hya"/>
+                            <constraint firstItem="Ban-Yn-a1U" firstAttribute="top" secondItem="lKr-FA-I2F" secondAttribute="top" id="Ozs-m5-iNZ"/>
                             <constraint firstItem="GkJ-FF-lvL" firstAttribute="centerX" secondItem="lKr-FA-I2F" secondAttribute="centerX" id="UHQ-Qk-V8c"/>
                             <constraint firstItem="eqV-dB-PDg" firstAttribute="centerY" secondItem="lKr-FA-I2F" secondAttribute="centerY" id="nqn-71-LOF"/>
+                            <constraint firstItem="dTV-HU-Gh5" firstAttribute="top" secondItem="Ban-Yn-a1U" secondAttribute="bottom" id="o2b-gi-SP8"/>
                             <constraint firstItem="GkJ-FF-lvL" firstAttribute="top" secondItem="eqV-dB-PDg" secondAttribute="bottom" constant="8" id="rw5-jc-sun"/>
+                            <constraint firstAttribute="trailing" secondItem="Ban-Yn-a1U" secondAttribute="trailing" id="yX6-xL-DKX"/>
+                            <constraint firstItem="Ban-Yn-a1U" firstAttribute="leading" secondItem="lKr-FA-I2F" secondAttribute="leading" id="ypq-dc-15Q"/>
                         </constraints>
                     </view>
                     <connections>
@@ -169,7 +176,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UNv-Hc-Dl2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1617" y="590"/>
+            <point key="canvasLocation" x="1616.9415292353824" y="589.60000000000002"/>
         </scene>
         <!--Photo View Controller-->
         <scene sceneID="1Ro-yP-wIm">
@@ -245,12 +252,6 @@
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kills: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fnl-3c-hQj">
-                                <rect key="frame" x="20" y="351" width="40.5" height="16"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EfO-jT-4nQ">
                                 <rect key="frame" x="20" y="28" width="30" height="30"/>
                                 <state key="normal" title="X"/>
@@ -272,6 +273,12 @@
                                     <action selector="onStieracClick" destination="4sE-dT-kl5" eventType="touchUpInside" id="cQA-qs-DIx"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kills: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fnl-3c-hQj">
+                                <rect key="frame" x="592.5" y="74" width="46.5" height="16"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="13"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -280,12 +287,12 @@
                             <constraint firstItem="KHW-0P-8HY" firstAttribute="leading" secondItem="eKw-Qj-S8s" secondAttribute="leadingMargin" id="CcL-Ht-T6M"/>
                             <constraint firstItem="4xc-DN-yyV" firstAttribute="height" secondItem="eKw-Qj-S8s" secondAttribute="height" multiplier="0.1" id="Ihz-Oz-NFS"/>
                             <constraint firstItem="KPp-Sy-hAq" firstAttribute="height" secondItem="eKw-Qj-S8s" secondAttribute="height" multiplier="0.1" id="LJx-Lz-5BH"/>
-                            <constraint firstItem="kzV-lr-bdG" firstAttribute="top" secondItem="Fnl-3c-hQj" secondAttribute="bottom" constant="8" id="LcL-pp-2gK"/>
                             <constraint firstItem="5cZ-9Z-ZMZ" firstAttribute="leading" secondItem="eKw-Qj-S8s" secondAttribute="leadingMargin" id="O81-Ac-8Ai"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Fnl-3c-hQj" secondAttribute="trailing" constant="8" id="T8p-XP-bJK"/>
                             <constraint firstItem="4xc-DN-yyV" firstAttribute="width" secondItem="eKw-Qj-S8s" secondAttribute="width" multiplier="0.3" id="Ylp-o1-Xcd"/>
                             <constraint firstAttribute="trailingMargin" secondItem="KPp-Sy-hAq" secondAttribute="trailing" id="Z2Q-CN-64g"/>
-                            <constraint firstItem="Fnl-3c-hQj" firstAttribute="leading" secondItem="eKw-Qj-S8s" secondAttribute="leadingMargin" id="dHT-4k-f7y"/>
                             <constraint firstItem="KPp-Sy-hAq" firstAttribute="top" secondItem="ecq-Nd-4Sq" secondAttribute="bottom" constant="8" id="f6H-Bg-mf1"/>
+                            <constraint firstItem="Fnl-3c-hQj" firstAttribute="top" secondItem="KPp-Sy-hAq" secondAttribute="bottom" constant="8" id="psa-yU-Rpt"/>
                             <constraint firstItem="EfO-jT-4nQ" firstAttribute="top" secondItem="ecq-Nd-4Sq" secondAttribute="bottom" constant="8" id="rpV-jz-1wG"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4xc-DN-yyV" secondAttribute="trailing" id="s6a-M6-UGJ"/>
                             <constraint firstItem="EfO-jT-4nQ" firstAttribute="leading" secondItem="eKw-Qj-S8s" secondAttribute="leadingMargin" id="sbJ-fN-nIJ"/>
@@ -309,5 +316,6 @@
         <image name="main-screen-background" width="534" height="300"/>
         <image name="main-screen-button" width="246" height="55"/>
         <image name="main-screen-killed" width="156" height="29"/>
+        <image name="weapon-screen-background" width="480" height="300"/>
     </resources>
 </document>

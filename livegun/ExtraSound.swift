@@ -28,4 +28,9 @@ class ExtraSound {
         player = try? AVAudioPlayer(data: NSDataAsset(name: soundName[randSoundNameIndex])!.data, fileTypeHint: AVFileTypeCoreAudioFormat)
         player?.play()
     }
+    
+    func addKill() {
+        player = try? AVAudioPlayer(data: NSDataAsset(name: "add-kill-sound")!.data, fileTypeHint: AVFileTypeCoreAudioFormat)
+        player?.play()
+    }
 }
