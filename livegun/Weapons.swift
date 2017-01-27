@@ -34,7 +34,7 @@ class XPR50: BaseWeapon {
             
         ]
         
-        lifeDemage = 0.1
+        lifeDemage = 0.3
     }
 }
 
