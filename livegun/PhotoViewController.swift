@@ -33,7 +33,7 @@ class PhotoViewController: UIViewController {
     @IBAction func onShare() {
         let text = "Some Text"
         let image = photoImageView.image!
-        let url = URL(string: "https://itunes.apple.com/us/app/myapp/id1185310030?ls=1&mt=8")!
+        let url = URL(string: "https://itunes.apple.com/us/app/myapp/idDoplnId?ls=1&mt=8")!
 
         
         let activityVC = UIActivityViewController(activityItems: [text, image, url],
