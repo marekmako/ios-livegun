@@ -85,7 +85,7 @@ class VideoViewController: UIViewController {
                 extraSound.playKill()
                 
                 let killCntLabelanimation = CABasicAnimation(keyPath: "transform.scale")
-                killCntLabelanimation.toValue = 2
+                killCntLabelanimation.toValue = 5
                 killCntLabelanimation.duration = 0.2
                 killCntLabelanimation.repeatCount = 4
                 killCntLabelanimation.autoreverses = true
