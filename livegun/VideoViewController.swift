@@ -245,9 +245,6 @@ extension VideoViewController {
                 }
             }
         }
-        #if DEBUG
-            print(bestFormat!, bestFrameRange!)
-        #endif
         if bestFormat != nil {
             try! input.device.lockForConfiguration()
             

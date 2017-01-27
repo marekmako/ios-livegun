@@ -18,6 +18,8 @@ class PhotoViewController: UIViewController {
     /// from segue
     var hitEffects: HitEffects!
     
+    let shareScore = Shares()
+    
     @IBOutlet weak var cancelButton: UIButton!
     
     @IBOutlet weak var shareButton: UIButton!
@@ -25,8 +27,27 @@ class PhotoViewController: UIViewController {
     @IBOutlet weak var photoImageView: UIImageView!
     
     @IBAction func onCancel() {
-        
         presentingViewController?.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func onShare() {
+        let text = "Some Text"
+        let image = photoImageView.image!
+        let url = URL(string: "https://itunes.apple.com/us/app/myapp/id1185310030?ls=1&mt=8")!
+
+        
+        let activityVC = UIActivityViewController(activityItems: [text, image, url],
+                                                  applicationActivities: nil)
+        
+        activityVC.excludedActivityTypes = [UIActivityType.addToReadingList, UIActivityType.airDrop, UIActivityType.copyToPasteboard, UIActivityType.openInIBooks]
+        
+        if let popoverVC = activityVC.popoverPresentationController {
+            popoverVC.sourceView = view
+        }
+        
+        present(activityVC, animated: true, completion: {
+            self.shareScore.addScore()
+        })
     }
 }
 
@@ -56,7 +77,8 @@ extension PhotoViewController {
         shareButton.isHidden = true
         
         // screen shot
-        UIGraphicsBeginImageContext(view.frame.size)
+        UIGraphicsBeginImageContextWithOptions(view.frame.size, false, 0.0)
+//        UIGraphicsBeginImageContext(view.frame.size)
         view.layer.render(in: UIGraphicsGetCurrentContext()!)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
