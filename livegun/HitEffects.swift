@@ -56,9 +56,9 @@ class HitEffects {
     func onHit() {
         krvaveFrkanceCollection.append(KrvaveFrkance(parent: effectsLayer))
         
-//        guard arc4random_uniform(10) < 3 else {
-//            return
-//        }
+        guard arc4random_uniform(10) < 3 else {
+            return
+        }
         
         guard !availableEffects.isEmpty else {
             return

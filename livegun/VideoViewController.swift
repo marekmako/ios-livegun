@@ -25,6 +25,8 @@ class VideoViewController: UIViewController {
     
     fileprivate let killScore = Kills()
     
+    fileprivate let extraSound = Sound()
+    
     fileprivate var audioPlayer: AVAudioPlayer?
     
     // video
@@ -79,7 +81,7 @@ class VideoViewController: UIViewController {
                 isAlive = false
                 killScore.addScore()
                 updateKillLabel()
-                
+                extraSound.playKill()
             }
             lifeProgressView.progress = life
         }
@@ -161,6 +163,7 @@ extension VideoViewController {
         if !isInitialized {
             isInitialized = true
             setup()
+            extraSound.playStart()
         }
     }
     
