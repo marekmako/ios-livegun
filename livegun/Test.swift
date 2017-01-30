@@ -98,7 +98,8 @@ class TestViewController: UIViewController {
         
         avSessionSetup()
         startCameraLivePreview()
-        hitEffects = HitEffects(videoLayer: videoLayer,
+        hitEffects = HitEffects(weapon: weapon!,
+                                videoLayer: videoLayer,
                                 faceLayer: faceLayer,
                                 laveOkoLayer: leftEyeLayer,
                                 praveOkoLayer: rightEyeLayer,

@@ -15,7 +15,11 @@ class WeaponViewController: UIViewController {
     
     var weaponType: BaseWeaponType!
     
+    @IBOutlet weak var weaponImage: UIImageView!
+    
     @IBOutlet weak var weaponNameLabel: UILabel!
+    
+    @IBOutlet weak var weaponDemageLabel: UILabel!
     
     @IBAction func onSelectWeapon() {
         // TODO: reklama
@@ -42,6 +46,8 @@ extension WeaponViewController {
             }
         #endif
         
-        weaponNameLabel.text = weaponType.name
+        weaponImage.image = weaponType.image
+        weaponNameLabel.text = weaponNameLabel.text?.replacingOccurrences(of: "%@", with: weaponType.name)
+        weaponDemageLabel.text  = weaponDemageLabel.text?.replacingOccurrences(of: "%@", with: "\(weaponType.demage!)")
     }
 }

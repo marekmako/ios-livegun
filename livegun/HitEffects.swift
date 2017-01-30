@@ -11,6 +11,9 @@ import AVFoundation
 
 
 class HitEffects {
+    
+    private var weapon: BaseWeapon!
+    
     /// hlavny layer pouziva sa na krvave frkance
     let videoLayer: CALayer!
     
@@ -41,7 +44,8 @@ class HitEffects {
     
     private var effectsInUse = [BaseHitEffect]()
     
-    init(videoLayer: CALayer, faceLayer: CALayer, laveOkoLayer: CALayer, praveOkoLayer: CALayer, ustaLayer: CALayer) {
+    init(weapon: BaseWeapon ,videoLayer: CALayer, faceLayer: CALayer, laveOkoLayer: CALayer, praveOkoLayer: CALayer, ustaLayer: CALayer) {
+        self.weapon = weapon
         self.videoLayer = videoLayer
         self.videoLayer.addSublayer(effectsLayer)
         
@@ -54,9 +58,12 @@ class HitEffects {
     }
     
     func onHit() {
-        krvaveFrkanceCollection.append(KrvaveFrkance(parent: effectsLayer))
         
-        guard arc4random_uniform(10) < 3 else {
+        for _ in 0..<weapon.hitEffectsIndex {
+            krvaveFrkanceCollection.append(KrvaveFrkance(parent: effectsLayer))
+        }
+        
+        guard Int(arc4random_uniform(10)) < weapon.hitEffectsIndex else {
             return
         }
         
@@ -165,7 +172,7 @@ fileprivate class KrvaveFrkance : BaseHitEffect {
         soundData = NSDataAsset(name: "FE-krvave-frkance-sound")
         
         updateLayerFrameAgainsParent()
-        playSound()
+//        playSound()
     }
     
     override func updateLayerFrameAgainsParent() {

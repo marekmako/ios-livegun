@@ -354,7 +354,8 @@ extension VideoViewController {
     }
 
     private func hitEffectsSetup() {
-        hitEffects = HitEffects(videoLayer: videoLayer,
+        hitEffects = HitEffects(weapon: weapon,
+                                videoLayer: videoLayer,
                                 faceLayer: faceLayer,
                                 laveOkoLayer: leftEyeLayer,
                                 praveOkoLayer: rightEyeLayer,
