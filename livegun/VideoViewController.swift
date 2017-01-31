@@ -9,9 +9,7 @@
 import UIKit
 import AVFoundation
 
-class VideoViewController: UIViewController {
-    
-
+class VideoViewController: BaseViewController {
     
     /// tu testujem otocenie videa
     @IBOutlet weak var testVideoImageView: UIImageView!
@@ -157,6 +155,12 @@ extension VideoViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        #if DEBUG
+            testVideoImageView.isHidden = true
+        #else
+            testVideoImageView.isHidden = true
+        #endif
 
         #if DEBUG
             guard mainVC != nil else {
@@ -176,12 +180,6 @@ extension VideoViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        #if DEBUG
-            testVideoImageView.isHidden = false
-        #else
-            testVideoImageView.isHidden = true
-        #endif
         
         if !isInitialized {
             isInitialized = true
@@ -424,7 +422,9 @@ extension VideoViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         faceDetection(from: ciImage)
         
         #if DEBUG
-            testVideoImageView.image = UIImage(ciImage: ciImage)
+            DispatchQueue.main.async {
+                self.testVideoImageView.image = UIImage(ciImage: ciImage)
+            }
         #endif
     }
     

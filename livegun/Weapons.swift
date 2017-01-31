@@ -133,9 +133,10 @@ class FlameMachine: BaseWeapon {
             #imageLiteral(resourceName: "flame-machine-shot3").cgImage!,
             #imageLiteral(resourceName: "flame-machine-shot4").cgImage!,
             #imageLiteral(resourceName: "flame-machine-shot5").cgImage!,
+            #imageLiteral(resourceName: "flame-machine-shot6").cgImage!,
         ]
-        shootAnimation.duration = 0.5
-        shootAnimation.keyTimes = [0, 0.2, 0.4, 0.6, 1]
+        shootAnimation.duration = 0.7
+        shootAnimation.keyTimes = [0, 0.2, 0.4, 0.6, 0.8, 1]
         
         gunAnimation.values = [
             #imageLiteral(resourceName: "flame-machine-2").cgImage!,

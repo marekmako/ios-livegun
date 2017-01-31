@@ -9,7 +9,7 @@
 import UIKit
 
 
-class WeaponViewController: UIViewController {
+class WeaponViewController: BaseViewController {
     
     weak var mainVC: MainViewController!
     

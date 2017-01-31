@@ -9,7 +9,7 @@
 import UIKit
 
 
-class PhotoViewController: UIViewController {
+class PhotoViewController: BaseViewController {
     
     /// from segue
     var videoVC: VideoViewController!
