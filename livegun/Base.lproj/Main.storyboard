@@ -114,9 +114,15 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1YI-Rd-3UY">
                                         <rect key="frame" x="0.0" y="170" width="246" height="55"/>
                                         <fontDescription key="fontDescription" type="system" weight="black" pointSize="18"/>
-                                        <state key="normal" title="Top Hunters" backgroundImage="main-screen-button">
+                                        <state key="normal" title="Top Killers" backgroundImage="main-screen-button">
                                             <color key="titleColor" red="0.20000000000000001" green="1" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <state key="disabled">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onLeaderBoardClick:" destination="WaZ-yq-Hs0" eventType="touchUpInside" id="Ph5-1m-NZW"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -138,6 +144,7 @@
                     </view>
                     <connections>
                         <outlet property="killedLabel" destination="t8m-2n-8tK" id="nBs-I8-LkI"/>
+                        <outlet property="leaderBoardButton" destination="1YI-Rd-3UY" id="pEF-k0-faL"/>
                         <segue destination="4sE-dT-kl5" kind="presentation" identifier="VideoViewControllerSegue" id="bWx-gJ-1RT"/>
                     </connections>
                 </viewController>

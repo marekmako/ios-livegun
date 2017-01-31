@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GameKit
 
 class MainViewController: BaseViewController {
     
@@ -18,7 +19,19 @@ class MainViewController: BaseViewController {
     @IBOutlet weak var killedLabel: UILabel!
     
     /// vrazda alebo samovrazda?
-    var isMurderType: Bool = true
+    fileprivate var isMurderType: Bool = true
+    
+    
+    /* leader board support */
+    
+    var authentificatedNotification: NSObjectProtocol?
+    
+    @IBOutlet weak var leaderBoardButton: UIButton!
+    
+    @IBAction func onLeaderBoardClick(_ sender: Any) {
+        let leaderBoardVC = LeaderBoard.createLeaderBoard(delegateView: self)
+        present(leaderBoardVC, animated: true, completion: nil)
+    }
 }
 
 // MARK: - LIFECYCLE
@@ -27,7 +40,7 @@ extension MainViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        leaderBoardButton.isEnabled = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -38,6 +51,18 @@ extension MainViewController {
         }
         
         killedLabel.text = "\(kills.cnt)"
+        
+        authentificatedNotification = NotificationCenter.default.addObserver(forName: Authentificator.authentificatedNotificationName, object: nil, queue: .main, using: {[unowned self] (_) in
+            self.leaderBoardButton.isEnabled = true
+        })
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        if authentificatedNotification != nil {
+            NotificationCenter.default.removeObserver(authentificatedNotification!)
+        }
     }
 
     // MARK: - Navigation
@@ -64,5 +89,14 @@ extension MainViewController {
                 videoVC.captureDevicePosition = .front
             }
         }
+    }
+}
+
+
+// MARK: - GKGameCenterControllerDelegate
+extension MainViewController: GKGameCenterControllerDelegate {
+    
+    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+        dismiss(animated: true, completion: nil)
     }
 }

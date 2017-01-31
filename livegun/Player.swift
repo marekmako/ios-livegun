@@ -10,6 +10,42 @@ import Foundation
 import GameKit
 
 
+// MARK: GAME CENTER LEADERBORD
+class LeaderBoard {
+    
+    private static let identifier = "com.marekmako.livegun.top_killers"
+    
+    func report(score: Int) {
+        guard Authentificator.shared.isAuthenticated() else {
+            return
+        }
+        
+        let gkscore = GKScore(leaderboardIdentifier: LeaderBoard.identifier)
+        gkscore.value = Int64(score)
+        
+        GKScore.report([gkscore], withCompletionHandler: { (error: Error?) in
+            #if DEBUG
+                if nil != error {
+                    print(error!.localizedDescription)
+                    
+                } else {
+                    print("score reported: \(gkscore.value) for \(LeaderBoard.identifier)" )
+                }
+            #endif
+        })
+    }
+    
+    class func createLeaderBoard(delegateView delegate: GKGameCenterControllerDelegate) -> GKGameCenterViewController {
+        let gkVC = GKGameCenterViewController()
+        gkVC.gameCenterDelegate = delegate
+        gkVC.viewState = .leaderboards
+        gkVC.leaderboardIdentifier = LeaderBoard.identifier
+        
+        return gkVC
+    }
+}
+
+
 // MARK: - Authentificator
 class Authentificator {
     
@@ -70,8 +106,15 @@ class Authentificator {
 // MARK: - SCORE
 class Kills: AbstractScore {
     
+    private let leaderBoard = LeaderBoard()
+    
     init() {
         super.init(userDefaultScoreKey: "k_kills_cnt")
+    }
+    
+    override func addScore(_ score: Int = 1) {
+        super.addScore(score)
+        leaderBoard.report(score: cnt)
     }
 }
 
