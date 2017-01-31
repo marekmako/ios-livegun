@@ -11,6 +11,14 @@ import AVFoundation
 
 class VideoViewController: UIViewController {
     
+
+    
+    /// tu testujem otocenie videa
+    @IBOutlet weak var testVideoImageView: UIImageView!
+    
+    // from segue
+    var captureDevicePosition: AVCaptureDevicePosition = .back
+    
     /// from segue
     var mainVC: MainViewController!
     
@@ -149,6 +157,7 @@ extension VideoViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         #if DEBUG
             guard mainVC != nil else {
                 fatalError()
@@ -167,6 +176,12 @@ extension VideoViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        #if DEBUG
+            testVideoImageView.isHidden = false
+        #else
+            testVideoImageView.isHidden = true
+        #endif
         
         if !isInitialized {
             isInitialized = true
@@ -223,7 +238,7 @@ extension VideoViewController {
     private func avSessionSetup() {
         let camera = AVCaptureDevice.defaultDevice(withDeviceType: AVCaptureDeviceType.builtInWideAngleCamera,
                                                    mediaType: AVMediaTypeVideo,
-                                                   position: .back)
+                                                   position: captureDevicePosition)
         
         avSession.beginConfiguration()
         
@@ -231,27 +246,29 @@ extension VideoViewController {
         let input = try! AVCaptureDeviceInput(device: camera)
         avSession.addInput(input)
         // najrychlejsi format videa
-        var bestFormat: AVCaptureDeviceFormat?
-        var bestFrameRange: AVFrameRateRange?
-        for format in input.device.formats as! [AVCaptureDeviceFormat] {
-            for range in format.videoSupportedFrameRateRanges as! [AVFrameRateRange] {
-                if bestFrameRange == nil {
-                    bestFrameRange = range
-                    bestFormat = format
-                    
-                } else if bestFrameRange!.maxFrameRate < range.maxFrameRate {
-                    bestFrameRange = range
-                    bestFormat = format
+        if captureDevicePosition == .back {
+            var bestFormat: AVCaptureDeviceFormat?
+            var bestFrameRange: AVFrameRateRange?
+            for format in input.device.formats as! [AVCaptureDeviceFormat] {
+                for range in format.videoSupportedFrameRateRanges as! [AVFrameRateRange] {
+                    if bestFrameRange == nil {
+                        bestFrameRange = range
+                        bestFormat = format
+                        
+                    } else if bestFrameRange!.maxFrameRate < range.maxFrameRate {
+                        bestFrameRange = range
+                        bestFormat = format
+                    }
                 }
             }
-        }
-        if bestFormat != nil {
-            try! input.device.lockForConfiguration()
-            
-            input.device.activeFormat = bestFormat!
-            input.device.activeVideoMinFrameDuration = bestFrameRange!.minFrameDuration
-            input.device.activeVideoMaxFrameDuration = bestFrameRange!.minFrameDuration
-            input.device.unlockForConfiguration()
+            if bestFormat != nil {
+                try! input.device.lockForConfiguration()
+                
+                input.device.activeFormat = bestFormat!
+                input.device.activeVideoMinFrameDuration = bestFrameRange!.minFrameDuration
+                input.device.activeVideoMaxFrameDuration = bestFrameRange!.minFrameDuration
+                input.device.unlockForConfiguration()
+            }
         }
         
         
@@ -269,6 +286,9 @@ extension VideoViewController {
         // MARK: VIDEO ORIENTATION
         videoOutputConnection = output.connections.first as? AVCaptureConnection
         videoOutputConnection?.videoOrientation = currentOrientation
+        if captureDevicePosition == .front, videoOutputConnection!.isVideoMirroringSupported {
+            videoOutputConnection?.isVideoMirrored = true
+        }
     }
     
     private func setupAndRunCameraLivePreview() {
@@ -402,6 +422,10 @@ extension VideoViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         let ciImage = CIImage(cvImageBuffer: cvImageBuffer)
         currImage = ciImage
         faceDetection(from: ciImage)
+        
+        #if DEBUG
+            testVideoImageView.image = UIImage(ciImage: ciImage)
+        #endif
     }
     
     private func faceDetection(from image: CIImage) {

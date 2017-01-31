@@ -12,10 +12,13 @@ class MainViewController: UIViewController {
     
     fileprivate let kills = Kills()
     
-    /// nastavene po unwinde z WeaponViewController, kde si hrac vybral zbran po pouziti vo videoVC je zbran vynulovana
+    /// nastavene po unwinde z WeaponViewController, kde si hrac vybral zbran po pouziti vo videoVC je zbvar vynulovana
     var selectedWeaponType: BaseWeaponType?
     
     @IBOutlet weak var killedLabel: UILabel!
+    
+    /// vrazda alebo samovrazda?
+    var isMurderType: Bool = true
 }
 
 // MARK: - LIFECYCLE
@@ -44,10 +47,22 @@ extension MainViewController {
         if let weaponPageVC = segue.destination as? WeaponPageViewController {
             weaponPageVC.mainVC = self
             
+            if segue.identifier == "suicide" {
+                isMurderType = false
+            } else if segue.identifier == "murder" {
+                isMurderType = true
+            }
+            
         } else if let videoVC = segue.destination as? VideoViewController {
             videoVC.mainVC = self
             videoVC.weaponType = selectedWeaponType!.classType!
             selectedWeaponType = nil
+            
+            if isMurderType {
+                videoVC.captureDevicePosition = .back
+            } else {
+                videoVC.captureDevicePosition = .front
+            }
         }
     }
 }
