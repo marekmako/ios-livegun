@@ -46,15 +46,15 @@ extension MainViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        authentificatedNotification = NotificationCenter.default.addObserver(forName: Authentificator.authentificatedNotificationName, object: nil, queue: .main, using: {[unowned self] (_) in
+            self.leaderBoardButton.isEnabled = true
+        })
+        
         if selectedWeaponType != nil {
             performSegue(withIdentifier: "VideoViewControllerSegue", sender: nil)
         }
         
         killedLabel.text = "\(kills.cnt)"
-        
-        authentificatedNotification = NotificationCenter.default.addObserver(forName: Authentificator.authentificatedNotificationName, object: nil, queue: .main, using: {[unowned self] (_) in
-            self.leaderBoardButton.isEnabled = true
-        })
     }
     
     override func viewDidDisappear(_ animated: Bool) {

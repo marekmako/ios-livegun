@@ -11,9 +11,13 @@ import UIKit
 
 class WeaponViewController: BaseViewController {
     
+    /// from segue
     weak var mainVC: MainViewController!
     
+    /// from segue
     var weaponType: BaseWeaponType!
+    
+    fileprivate let killed = Kills()
     
     @IBOutlet weak var weaponImage: UIImageView!
     
@@ -22,10 +26,19 @@ class WeaponViewController: BaseViewController {
     @IBOutlet weak var weaponDemageLabel: UILabel!
     
     @IBAction func onSelectWeapon() {
-        // TODO: reklama
-        
-        mainVC.selectedWeaponType = weaponType
-        mainVC.dismiss(animated: true, completion: nil)
+        if killed.cnt >= weaponType.requiredKillsForFree {
+            mainVC.selectedWeaponType = weaponType
+            mainVC.dismiss(animated: true, completion: nil)
+            
+        } else {
+            let alert = UIAlertController(title: "\(weaponType.name)\nrequires \(weaponType.requiredKillsForFree) kills", message: "Remaining \(weaponType.requiredKillsForFree - killed.cnt)", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK, I try another weapon", style: .destructive, handler: nil))
+            alert.addAction(UIAlertAction(title: "Watch video and grab it now", style: .default, handler: { _ in
+                self.mainVC.selectedWeaponType = self.weaponType
+                self.mainVC.dismiss(animated: true, completion: nil)
+            }))
+            present(alert, animated: true, completion: nil)
+        }
     }
 }
 

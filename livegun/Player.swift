@@ -10,7 +10,7 @@ import Foundation
 import GameKit
 
 
-// MARK: GAME CENTER LEADERBORD
+// MARK: - GAME CENTER LEADERBORD
 class LeaderBoard {
     
     private static let identifier = "com.marekmako.livegun.top_killers"

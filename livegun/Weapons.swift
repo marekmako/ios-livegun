@@ -20,6 +20,7 @@ class MachineGunType: BaseWeaponType {
         classType = MachineGun.self
         demage = 50
         image = #imageLiteral(resourceName: "machine-gun-profile")
+        requiredKillsForFree = 1200
     }
 }
 class MachineGun: BaseWeapon {
@@ -116,6 +117,7 @@ class FlameMachineType: BaseWeaponType {
         classType = FlameMachine.self
         demage = 35
         image = #imageLiteral(resourceName: "flame-machine-profile")
+        requiredKillsForFree = 500
     }
 }
 class FlameMachine: BaseWeapon {
@@ -167,6 +169,7 @@ class BazookaType: BaseWeaponType {
         classType = Bazooka.self
         demage = 80
         image = #imageLiteral(resourceName: "bazooka-profile")
+        requiredKillsForFree = 1000
     }
 }
 class Bazooka: BaseWeapon {
@@ -212,6 +215,7 @@ class FG42Type: BaseWeaponType {
         classType = FG42.self
         demage = 55
         image = #imageLiteral(resourceName: "fg42-profile")
+        requiredKillsForFree = 300
     }
 }
 class FG42: BaseWeapon {
@@ -278,7 +282,7 @@ class P99: BaseWeapon {
         soundName = "p99-sound"
         
         shootAnimation.values = [
-            #imageLiteral(resourceName: "p99-shot").cgImage!
+            #imageLiteral(resourceName: "nambu-shot").cgImage!
         ]
         shootAnimation.duration = 0.4
         shootAnimation.keyTimes = [1]
@@ -344,6 +348,7 @@ class XPR50Type: BaseWeaponType {
         classType = XPR50.self
         demage = 30
         image = #imageLiteral(resourceName: "rifle-xpr50-profile")
+        requiredKillsForFree = 100
     }
 }
 class XPR50: BaseWeapon {
@@ -382,6 +387,8 @@ class BaseWeaponType {
     var demage: Int?
     
     var image: UIImage?
+    
+    var requiredKillsForFree = 0
     
     required init() {}
 }
