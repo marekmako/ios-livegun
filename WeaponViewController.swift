@@ -32,14 +32,13 @@ class WeaponViewController: BaseViewController {
             mainVC.dismiss(animated: true, completion: nil)
             
         } else {
-            let alert = UIAlertController(title: "\(weaponType.name)\nrequires \(weaponType.requiredKillsForFree) kills", message: "Remaining \(weaponType.requiredKillsForFree - killed.cnt)", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK, I try another weapon", style: .destructive, handler: nil))
-            
+            let alert = UIAlertController(title: "\(weaponType.name)\n\nYou need only\n\(weaponType.requiredKillsForFree - killed.cnt)\nmore victims to unlock", message: nil, preferredStyle: .alert)
             if RewardAd.shared.isReady() {
-                alert.addAction(UIAlertAction(title: "Watch video and grab it now", style: .default, handler: { [unowned self] _ in
+                alert.addAction(UIAlertAction(title: "Only watch video to unlock", style: .destructive, handler: { [unowned self] _ in
                     RewardAd.shared.present(from: self)
                 }))
             }
+            alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
             
             present(alert, animated: true, completion: nil)
         }

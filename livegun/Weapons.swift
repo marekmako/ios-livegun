@@ -20,7 +20,7 @@ class MachineGunType: BaseWeaponType {
         classType = MachineGun.self
         demage = 50
         image = #imageLiteral(resourceName: "machine-gun-profile")
-        requiredKillsForFree = 250
+        requiredKillsForFree = 50
     }
 }
 class MachineGun: BaseWeapon {
@@ -72,7 +72,7 @@ class RPGType: BaseWeaponType {
         classType = RPG.self
         demage = 70
         image = #imageLiteral(resourceName: "rpg-profile")
-        requiredKillsForFree = 500
+        requiredKillsForFree = 100
     }
 }
 class RPG: BaseWeapon {
@@ -120,7 +120,7 @@ class FlameMachineType: BaseWeaponType {
         classType = FlameMachine.self
         demage = 35
         image = #imageLiteral(resourceName: "flame-machine-profile")
-        requiredKillsForFree = 350
+        requiredKillsForFree = 75
     }
 }
 class FlameMachine: BaseWeapon {
@@ -172,7 +172,7 @@ class BazookaType: BaseWeaponType {
         classType = Bazooka.self
         demage = 80
         image = #imageLiteral(resourceName: "bazooka-profile")
-        requiredKillsForFree = 1000
+        requiredKillsForFree = 150
     }
 }
 class Bazooka: BaseWeapon {
@@ -218,7 +218,7 @@ class FG42Type: BaseWeaponType {
         classType = FG42.self
         demage = 55
         image = #imageLiteral(resourceName: "fg42-profile")
-        requiredKillsForFree = 100
+        requiredKillsForFree = 25
     }
 }
 class FG42: BaseWeapon {
@@ -273,7 +273,7 @@ class P99Type: BaseWeaponType {
         classType = P99.self
         demage = 10
         image = #imageLiteral(resourceName: "p99-profile")
-        requiredKillsForFree = 25
+        requiredKillsForFree = 10
     }
 }
 class P99: BaseWeapon {
