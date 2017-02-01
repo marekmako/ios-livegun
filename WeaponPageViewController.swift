@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 
 class WeaponPageViewController: UIPageViewController {
@@ -14,6 +15,7 @@ class WeaponPageViewController: UIPageViewController {
     /// nastaveny zo segue
     weak var mainVC: MainViewController!
     
+    /// sluzi pre datasource
     fileprivate var currentVC: WeaponViewController!
     
     fileprivate lazy  var orderedVC: [WeaponViewController] = {
@@ -35,6 +37,12 @@ class WeaponPageViewController: UIPageViewController {
             createWeaponController(weapon: RPGType()),
         ]
     }()
+    
+    
+    fileprivate var previousVC: WeaponViewController?
+    fileprivate var pendingVC: WeaponViewController?
+    /// zobrazeny VC
+    fileprivate var visibleVC: WeaponViewController?
 }
 
 
@@ -54,7 +62,11 @@ extension WeaponPageViewController {
         dataSource = self
         
         currentVC = orderedVC.first!
+        visibleVC = currentVC
         setViewControllers([currentVC], direction: UIPageViewControllerNavigationDirection.forward, animated: true, completion: nil)
+        
+        RewardAd.shared.delegate = self
+        delegate = self
     }
 }
 
@@ -97,5 +109,34 @@ extension WeaponPageViewController: UIPageViewControllerDataSource {
     
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         return orderedVC.index(of: currentVC)!
+    }
+}
+
+// MARK: - UIPageViewControllerDelegate
+extension WeaponPageViewController: UIPageViewControllerDelegate {
+    
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        pendingVC = pendingViewControllers.first as? WeaponViewController
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        previousVC = previousViewControllers.first as? WeaponViewController
+        
+        if completed {
+            visibleVC = pendingVC
+            
+        } else {
+            visibleVC = previousVC
+        }
+    }
+}
+
+
+// MARK: - RewardAdDelegate
+extension WeaponPageViewController: RewardAdDelegate {
+    
+    func rewardAdd(didRewardUserWith with: GADAdReward) {
+        mainVC.selectedWeaponType = visibleVC?.weaponType
+        mainVC.dismiss(animated: true, completion: nil)
     }
 }

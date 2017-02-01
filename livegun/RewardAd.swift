@@ -10,6 +10,11 @@ import Foundation
 import GoogleMobileAds
 
 
+protocol RewardAdDelegate: class {
+    func rewardAdd(didRewardUserWith with: GADAdReward)
+}
+
+
 class RewardAd: NSObject, GADRewardBasedVideoAdDelegate {
     
     let rewardUserNotificationName = Notification.Name("RewardAd.rewardUserNotificationName")
@@ -17,6 +22,8 @@ class RewardAd: NSObject, GADRewardBasedVideoAdDelegate {
     static let shared = RewardAd()
     
     private var ad: GADRewardBasedVideoAd
+    
+    weak var delegate: RewardAdDelegate?
     
     private override init() {
         ad = GADRewardBasedVideoAd.sharedInstance()
@@ -51,6 +58,7 @@ class RewardAd: NSObject, GADRewardBasedVideoAdDelegate {
             print("rewardBasedVideoAd:didRewardUserWith")
         #endif
 //        delegate?.rewardAd(didRewardUser: reward)
+        delegate?.rewardAdd(didRewardUserWith: reward)
         NotificationCenter.default.post(name: rewardUserNotificationName, object: nil)
         load()
     }

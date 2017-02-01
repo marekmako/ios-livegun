@@ -22,6 +22,17 @@ class BaseViewController: UIViewController {
         }
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        
+        #if DEBUG
+            let alert = UIAlertController(title: "Memory Warning", message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: false, completion: nil)
+        #endif
+        
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
