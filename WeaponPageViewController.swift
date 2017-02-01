@@ -28,13 +28,13 @@ class WeaponPageViewController: UIPageViewController {
         
         return [
             createWeaponController(weapon: NambuType()),
-            createWeaponController(weapon: P99Type()),
             createWeaponController(weapon: XPR50Type()),
+            createWeaponController(weapon: P99Type()),
             createWeaponController(weapon: FG42Type()),
             createWeaponController(weapon: MachineGunType()),
-            createWeaponController(weapon: BazookaType()),
             createWeaponController(weapon: FlameMachineType()),
             createWeaponController(weapon: RPGType()),
+            createWeaponController(weapon: BazookaType()),
         ]
     }()
     
