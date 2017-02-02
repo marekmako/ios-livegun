@@ -27,6 +27,7 @@ class WeaponViewController: BaseViewController {
     @IBOutlet weak var weaponDemageLabel: UILabel!
     
     @IBAction func onSelectWeapon() {
+        onClickSound()
         if killed.cnt >= weaponType.requiredKillsForFree {
             mainVC.selectedWeaponType = weaponType
             mainVC.dismiss(animated: true, completion: nil)

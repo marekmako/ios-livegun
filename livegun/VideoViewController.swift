@@ -64,14 +64,17 @@ class VideoViewController: BaseViewController {
     
     // actions
     @IBAction func onCancel() {
+        onClickSound()
         mainVC.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func onStieracClick() {
+        onClickSound()
         runStierac()
     }
     
     @IBAction func onPhoto() {
+        onClickSound()
         guard currImage != nil else {
             return
         }

@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import AVFoundation
 
 class BaseViewController: UIViewController {
+    
+    // MARK: - Game Center Authentification
     
     private var authentificatorVCNotification: NSObjectProtocol?
 
@@ -22,22 +25,20 @@ class BaseViewController: UIViewController {
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
-        #if DEBUG
-            let alert = UIAlertController(title: "Memory Warning", message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            present(alert, animated: false, completion: nil)
-        #endif
-        
-    }
-    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         if authentificatorVCNotification != nil {
             NotificationCenter.default.removeObserver(authentificatorVCNotification!)
         }
+    }
+    
+    // MARK: - Click sound
+    
+    var player: AVAudioPlayer?
+    
+    func onClickSound() {
+        player = try? AVAudioPlayer(data: NSDataAsset(name: "tapsound")!.data, fileTypeHint: AVFileTypeCoreAudioFormat)
+        player?.play()
     }
 }

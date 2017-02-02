@@ -27,10 +27,12 @@ class PhotoViewController: BaseViewController {
     @IBOutlet weak var photoImageView: UIImageView!
     
     @IBAction func onCancel() {
+        onClickSound()
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func onShare() {
+        onClickSound()
         let text = "Some Text"
         let image = photoImageView.image!
         let url = URL(string: "https://itunes.apple.com/us/app/myapp/idDoplnId?ls=1&mt=8")!

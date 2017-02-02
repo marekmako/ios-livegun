@@ -29,8 +29,18 @@ class MainViewController: BaseViewController {
     @IBOutlet weak var leaderBoardButton: UIButton!
     
     @IBAction func onLeaderBoardClick(_ sender: Any) {
+        onClickSound()
         let leaderBoardVC = LeaderBoard.createLeaderBoard(delegateView: self)
         present(leaderBoardVC, animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func onNewMurder() {
+        onClickSound()
+    }
+    
+    @IBAction func onSuicide() {
+        onClickSound()
     }
 }
 
