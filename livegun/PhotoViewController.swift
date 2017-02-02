@@ -20,6 +20,8 @@ class PhotoViewController: BaseViewController {
     
     let shareScore = Shares()
     
+    let kills = Kills()
+    
     @IBOutlet weak var cancelButton: UIButton!
     
     @IBOutlet weak var shareButton: UIButton!
@@ -33,7 +35,7 @@ class PhotoViewController: BaseViewController {
     
     @IBAction func onShare() {
         onClickSound()
-        let text = "Some Text"
+        let text = "My victim list contains \(kills.cnt) people. Are you ready try new gun game and beat me?"
         let image = photoImageView.image!
         let url = URL(string: "https://itunes.apple.com/us/app/myapp/id1200718859?ls=1&mt=8")!
 
