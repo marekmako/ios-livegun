@@ -35,7 +35,7 @@ class PhotoViewController: BaseViewController {
         onClickSound()
         let text = "Some Text"
         let image = photoImageView.image!
-        let url = URL(string: "https://itunes.apple.com/us/app/myapp/idDoplnId?ls=1&mt=8")!
+        let url = URL(string: "https://itunes.apple.com/us/app/myapp/id1200718859?ls=1&mt=8")!
 
         
         let activityVC = UIActivityViewController(activityItems: [text, image, url],
